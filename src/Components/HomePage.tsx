@@ -1,4 +1,5 @@
 export function HomePage (props: any) {
+    props.onPropFromChild('I am Comming from Homepage Component');
     return (
         <header className="App-header">
         <img src={props.logo} className="App-logo" alt="logo" />
