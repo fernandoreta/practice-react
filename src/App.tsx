@@ -5,10 +5,10 @@ import { HomePage } from './Components/HomePage';
 
 function App() {
   
-  const [ appTitle, setAppTitle ] = useState('Im in app component');
+  const [ appTitle, setAppTitle ] = useState<string | undefined>('Im in app component');
 
-  const changeAppTitleFromHomePage = () => {
-    setAppTitle('It Change');
+  const changeAppTitleFromHomePage = (newTitle: string | undefined) => {
+    setAppTitle(newTitle);
   };
 
   return (
@@ -16,7 +16,8 @@ function App() {
       <p>{appTitle}</p>
       <HomePage
         logo={logo}
-        changeAppTitleFromHomePage={changeAppTitleFromHomePage}
+        changeAppTitleFromHomePage={(newTitle: string | undefined) => changeAppTitleFromHomePage(newTitle)
+        }
       />
     </div>
   );
