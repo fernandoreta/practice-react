@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { HomePage } from './Components/HomePage';
 
 function App() {
-  const handlePropFromChild = (propFromChild: string) => {
-    // Use the propFromChild value in the parent component as needed
-    console.log(propFromChild);
+  
+  const [ appTitle, setAppTitle ] = useState('Im in app component');
+
+  const changeAppTitleFromHomePage = () => {
+    setAppTitle('It Change');
   };
+
   return (
     <div className="App">
-      <HomePage onPropFromChild={handlePropFromChild} logo={logo} />
+      <p>{appTitle}</p>
+      <HomePage
+        logo={logo}
+        changeAppTitleFromHomePage={changeAppTitleFromHomePage}
+      />
     </div>
   );
 }

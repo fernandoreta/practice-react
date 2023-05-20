@@ -1,19 +1,29 @@
+import { useState } from "react";
+
 export function HomePage (props: any) {
-    props.onPropFromChild('I am Comming from Homepage Component');
+  
+  const [ status, setStatus ] = useState<boolean>(true);
+
+  const changeStatus = (currentStatus: boolean) => currentStatus ? setStatus(true) : setStatus(false);
+
+  const changeAppTitleFromHomePage = () => {
+    props.changeAppTitleFromHomePage();
+  };
+
     return (
         <header className="App-header">
+        <button onClick={() => changeStatus(!status)}
+        style={{ background: status ? 'blue' : 'red' }}>
+          {status ? 'ON': 'OFF'}
+        </button>
+        <input type="text" />
+        <button onClick={() => changeAppTitleFromHomePage()}>
+          Change Title From App.
+        </button>
         <img src={props.logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     )
 }
