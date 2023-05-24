@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { HomePage } from './Components/HomePage';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   
@@ -11,14 +12,21 @@ function App() {
     setAppTitle(newTitle);
   };
 
+  // element prop now is the same as exact in prev versions
   return (
     <div className="App">
       <p>{appTitle}</p>
-      <HomePage
-        logo={logo}
-        changeAppTitleFromHomePage={(newTitle: string | undefined) => changeAppTitleFromHomePage(newTitle)
-        }
-      />
+      <Routes>
+        <Route path="/home"
+          element={
+            <HomePage
+            logo={logo}
+            changeAppTitleFromHomePage={(newTitle: string | undefined) => changeAppTitleFromHomePage(newTitle)
+            }
+          />
+          }>
+        </Route>
+      </Routes>
     </div>
   );
 }
