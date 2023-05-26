@@ -18,13 +18,21 @@ function App() {
     setAppTitle(newTitle);
   };
 
+  const removeItem = (item: IItem) => {
+    setItems((lastState: IItem[]) => {
+      return lastState.filter((existingItem: IItem) => {
+        return existingItem.name !== item.name
+      });
+    });
+  };
+  
 
   const addItem = () => {
     const newItem: IItem = {
       name: newItemName?.current?.value,
       price: newItemPrice?.current?.value
     }
-    setItems((lastState: any) => {
+    setItems((lastState: IItem[]) => {
       return [ newItem, ...lastState ];
     });
   };
@@ -43,7 +51,7 @@ function App() {
                 <h3>Items Coming From the App Component. (Using Item Component)</h3>
                 {
                   items.map(item => (
-                    <Item name={item.name} price={item.price} />
+                    <Item name={item.name} price={item.price} removeItem={(item) => removeItem(item)} />
                   ))
                 }
                 <input type="text" ref={newItemName} />
